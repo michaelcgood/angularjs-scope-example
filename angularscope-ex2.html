@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scope Hierarchy</title>
+
+<script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.min.js"></script>
+  <script>
+  (function(angular) {
+  'use strict';
+angular.module('scopeExample', [])
+  .controller('HelloController', ['$scope', '$rootScope', function($scope, $rootScope) {
+    $scope.name = 'World';
+    $rootScope.department = 'Red Dead Redemption 2';
+  }])
+  .controller('ListController', ['$scope', function($scope) {
+    $scope.names = ['Arthur', 'Dutch', 'Bill'];
+  }]);
+})(window.angular);
+
+  </script>
+  
+</head>
+<body ng-app="scopeExample">
+  <div class="show-scope-demo">
+  <div ng-controller="HelloController">
+    Hello {{name}}!
+  </div>
+  <div ng-controller="ListController">
+    <ol>
+      <li ng-repeat="name in names">{{name}} from {{department}}</li>
+    </ol>
+  </div>
+</div>
+</body>
+</html>
